@@ -71,12 +71,6 @@ def index():
     return render_template('index.html')
 
 
-
-# @app.route('/login.html')
-# def login():
-#     return render_template('login.html')
-
-
 @app.route('/register.html', methods=['GET', 'POST'])
 def register():
     # Output message if something goes wrong...
@@ -116,6 +110,7 @@ def register():
 def profile():
     return render_template('profile.html')
 
+
 # http://localhost:5000/pythonlogin/ - the following will be our login page, which will use both GET and POST requests
 @app.route('/profile/data/', methods=['GET'])
 def search():
@@ -146,8 +141,6 @@ def search():
         # Fetch one record and return result
         account = cursor.fetchone()
         
-       
-
         # If account exists in accounts table in out database
         if account:
             print("hi3")
@@ -164,8 +157,11 @@ def search():
                 product = cursor_prod.fetchone()
                 account_firma = product['site']
                 #print(product)
-                if account_firma == firma:
-                    print(product)
+                if firma != 'all':
+                    if account_firma == firma:
+                        print(product)
+                        res.append(product)
+                else:
                     res.append(product)
                 account = cursor.fetchone()
 
@@ -247,8 +243,6 @@ def giveAllSites():
             res.append(account['link'])
             account = cursor.fetchone()
 
-        # Fetch one record and return result
-        print(res)
     return res
 
 
