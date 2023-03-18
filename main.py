@@ -116,6 +116,12 @@ def register():
 def profile():
     return render_template('profile.html')
 
+@app.route('/add/product')
+def add_product():  
+    data = request.get_json()
+    products = data['products']
+    print("products", products)
+    return "ok"
 
 
 if __name__ == '__main__':
