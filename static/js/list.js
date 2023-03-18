@@ -1,36 +1,14 @@
-const products = [
-    {
-      name: "T-Shirt",
-      price: 20.99,
-      description: "A comfortable and stylish t-shirt made from 100% cotton.",
-      image: "https://example.com/tshirt.jpg"
-    },
-    {
-      name: "Jeans",
-      price: 39.99,
-      description: "High-quality denim jeans with a slim fit and five-pocket styling.",
-      image: "https://example.com/jeans.jpg"
-    },
-    {
-      name: "Hoodie",
-      price: 29.99,
-      description: "A cozy hoodie made from a soft and warm cotton blend.",
-      image: "https://example.com/hoodie.jpg"
-    },
-    {
-      name: "Sneakers",
-      price: 59.99,
-      description: "Stylish sneakers with a cushioned sole and breathable mesh upper.",
-      image: "https://example.com/sneakers.jpg"
-    }
+let products = [
 ];
 
 
-function getDataAll(event){
-  if (event.type === 'click'){
-   fetch('/profile/data?firma=all')
+function getDataAll() {
+  fetch('/profile/data?firma=all&username=luciangeorge06@yahoo.com')
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
+      products = [];
+      products = data;
+      generateList();
       // Do something with the data
       console.log(data);
     })
@@ -38,14 +16,31 @@ function getDataAll(event){
       // Handle any errors
       console.error(error);
     });
-  }
 }
 
-function getDataEmag(event){
-  if (event.type === 'click'){
-   fetch('/profile/data?firma=emag')
+function getDataEmag() {
+fetch('/profile/data?firma=emag&username=luciangeorge06@yahoo.com')
+  .then(response => response.json()) // Parse the response as JSON
+  .then(data => {
+    products = [];
+    products = data;
+    generateList();
+    // Do something with the data
+    console.log(data);
+  })
+  .catch(error => {
+    // Handle any errors
+    console.error(error);
+  });
+}
+
+function getDataPCgarage() {
+  fetch('/profile/data?firma=pcgarage&username=luciangeorge06@yahoo.com')
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
+      products = [];
+      products = data;
+      generateList();
       // Do something with the data
       console.log(data);
     })
@@ -53,14 +48,14 @@ function getDataEmag(event){
       // Handle any errors
       console.error(error);
     });
-  }
 }
 
-
+function generateList(){
+  document.getElementById("product-list-tag-id").innerHTML = '';
 for (let i = 0; i < products.length; i++) {
     const product = products[i];
     let cards_boots=`
-    <div class=" col-md-4" style="margin-top: 25px;">
+    <div class=" col-md-4" style="margin-top: 50px;">
             <div class="card " >
             <img class="card-img-top" src=${product.image} alt="Card image cap">
             <div class="card-body">
@@ -71,9 +66,12 @@ for (let i = 0; i < products.length; i++) {
             </div>
             </div>
             </div>
-            
+
 
             `;
 
             document.getElementById("product-list-tag-id").innerHTML +=cards_boots;
 }
+}
+
+getDataAll();
