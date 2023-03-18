@@ -1,0 +1,37 @@
+CREATE TABLE `websites` (
+  `idwebsites` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `link` varchar(200) NOT NULL,
+  PRIMARY KEY (`idwebsites`),
+  UNIQUE KEY `name_UNIQUE` (`name`),
+  UNIQUE KEY `link_UNIQUE` (`link`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+INSERT INTO `kartiai`.`websites`
+(`name`,
+`link`)
+VALUES
+('emag',
+'https://www.emag.ro/search/');
+
+INSERT INTO `kartiai`.`websites`
+(`name`,
+`link`)
+VALUES
+('amazon',
+'https://www.amazon.com/s?k=');
+
+INSERT INTO `kartiai`.`websites`
+(`name`,
+`link`)
+VALUES
+('pcgarage',
+'https://www.pcgarage.ro/cauta/');
+
+INSERT INTO `kartiai`.`websites`
+(`name`,
+`link`)
+VALUES
+('cel',
+'https://www.cel.ro/cauta/');
