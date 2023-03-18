@@ -26,11 +26,13 @@ const products = [
 ];
 
 
-function getDataAll(event){
-  if (event.type === 'click'){
-   fetch('/profile/data?firma=all')
+
+function getDataAll() {
+  fetch('/profile/data?firma=all&username=luciangeorge06@yahoo.com')
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
+      products = data;
+      generateList();
       // Do something with the data
       console.log(data);
     })
@@ -38,14 +40,29 @@ function getDataAll(event){
       // Handle any errors
       console.error(error);
     });
-  }
 }
 
-function getDataEmag(event){
-  if (event.type === 'click'){
-   fetch('/profile/data?firma=emag')
+function getDataEmag() {
+fetch('/profile/data?firma=emag&username=luciangeorge06@yahoo.com')
+  .then(response => response.json()) // Parse the response as JSON
+  .then(data => {
+    products = data;
+    generateList();
+    // Do something with the data
+    console.log(data);
+  })
+  .catch(error => {
+    // Handle any errors
+    console.error(error);
+  });
+}
+
+function getDataPCgarage() {
+  fetch('/profile/data?firma=pcgarage&username=luciangeorge06@yahoo.com')
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
+      products = data;
+      generateList();
       // Do something with the data
       console.log(data);
     })
@@ -53,7 +70,6 @@ function getDataEmag(event){
       // Handle any errors
       console.error(error);
     });
-  }
 }
 
 
