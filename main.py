@@ -134,6 +134,9 @@ def search():
     if request.method == 'GET':
         print("hello2")
 
+
+        # here is for all
+
         # Check if account exists using MySQL
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         str = 'SELECT * FROM kartiai.users WHERE email =' + "'" + username + "'"
@@ -175,6 +178,32 @@ def search():
             msg = 'Incorrect username/password!'
 
     return render_template('login.html', msg=msg)
+
+
+@app.route('/allsites', methods=['GET'])
+def giveAllSites():
+     # Output message if something goes wrong...
+    msg = ''
+    res = []
+    
+    if request.method == 'GET':
+        print("hello2")
+
+        # Check if account exists using MySQL
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        str = 'SELECT link FROM kartiai.websites'
+        cursor.execute(str)
+        account = cursor.fetchone()
+        print(account)
+
+        while account:
+            res.append(account['link'])
+            account = cursor.fetchone()
+
+        # Fetch one record and return result
+        print(res)
+    return res
+
 
 if __name__ == '__main__':
     app.run()
