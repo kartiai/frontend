@@ -129,6 +129,9 @@ def search():
     if request.method == 'GET':
         print("hello2")
 
+
+        # here is for all
+
         # Check if account exists using MySQL
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         str = 'SELECT * FROM kartiai.users WHERE email =' + "'" + username + "'"
