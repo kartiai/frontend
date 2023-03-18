@@ -60,14 +60,18 @@ function getDataEmag(event){
 for (let i = 0; i < products.length; i++) {
     const product = products[i];
     let cards_boots=`
-            <div class="card" style="width: 18rem;">
+    <div class=" col-md-4" style="margin-top: 25px;">
+            <div class="card " >
             <img class="card-img-top" src=${product.image} alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">${product.name}</h5>
                 <p class="card-text">${product.description}</p>
                 <a href="#" class="btn btn-primary">${product.price}</a>
+                <a href="#" class="btn btn-primary" id="compare_data-ida1321" data-bs-toggle="modal" data-bs-target="#exampleModal">Compare</a>
             </div>
             </div>
+            </div>
+            
 
             `;
 

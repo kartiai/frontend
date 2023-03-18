@@ -10,7 +10,7 @@ console.log("data");
 //add onclick add event listener
 window.onload = function() {
 
-    const element = document.getElementById("myBtn");
+    const element = document.getElementById("compare_data-ida1321");
     element.addEventListener("click", function(element) {
         console.log(element);
         chrome.runtime.sendMessage({ data });

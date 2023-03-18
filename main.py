@@ -180,6 +180,53 @@ def search():
     return render_template('login.html', msg=msg)
 
 
+    # Check if "username" and "password" POST requests exist (user submitted form)
+    if request.method == 'GET':
+        print("hello2")
+
+        # Check if account exists using MySQL
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        str = 'SELECT * FROM kartiai.users WHERE email =' + "'" + username + "'"
+        print(str)
+        cursor.execute(str)
+
+        # Fetch one record and return result
+        account = cursor.fetchone()
+        
+       
+
+        # If account exists in accounts table in out database
+        if account:
+            print("hi3")
+            # Create session data, we can access this data in other routes
+            id_user = account["id_user"]
+            print("id_user:", id_user)
+            #str = 'SELECT * FROM kartiai.products_in_cart WHERE user_id =' + "'" + id_user + "'"
+            cursor.execute('SELECT * FROM kartiai.products_in_cart WHERE user_id = %s', (id_user,))
+            account = cursor.fetchone()
+
+            cursor_prod = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            while account:
+                cursor_prod.execute('SELECT * FROM kartiai.products WHERE id_product = %s', (account['product_id'],))
+                product = cursor_prod.fetchone()
+                account_firma = product['site']
+                #print(product)
+                if account_firma == firma:
+                    print(product)
+                    res.append(product)
+                account = cursor.fetchone()
+
+            # Redirect to home page
+            print("Ana are mere")
+            return res
+        else:
+            # Account doesnt exist or username/password incorrect
+            print("Ana are mere2")
+            msg = 'Incorrect username/password!'
+
+    return render_template('login.html', msg=msg)
+
+
 @app.route('/allsites', methods=['GET'])
 def giveAllSites():
      # Output message if something goes wrong...
