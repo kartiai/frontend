@@ -28,7 +28,7 @@ const products = [
 
 function getDataAll(event){
   if (event.type === 'click'){
-   fetch('/profile/data?all')
+   fetch('/profile/data?firma=all')
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
       // Do something with the data
@@ -43,7 +43,7 @@ function getDataAll(event){
 
 function getDataEmag(event){
   if (event.type === 'click'){
-   fetch('/profile/data?emag')
+   fetch('/profile/data?firma=emag')
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
       // Do something with the data
