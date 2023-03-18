@@ -77,9 +77,39 @@ def index():
 #     return render_template('login.html')
 
 
-@app.route('/register.html')
+@app.route('/register.html', methods=['GET', 'POST'])
 def register():
-    return render_template('register.html')
+    # Output message if something goes wrong...
+    msg = ''
+    print("hi1")
+    # Check if "username", "password" and "email" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form :
+        # Create variables for easy access
+        print("hi2")
+        username = request.form['username']
+        password = request.form['password']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM kartiai.users WHERE email = %s', (username,))
+        account = cursor.fetchone()
+        # If account exists show error and validation checks
+        if account:
+            msg = 'Account already exists!'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', username):
+            msg = 'Invalid email address!'
+        elif not username or not password or not username:
+            msg = 'Please fill out the form!'
+        else:
+            # Account doesnt exists and the form data is valid, now insert new account into accounts table
+            cursor.execute('INSERT INTO kartiai.users VALUES (NULL, %s, %s)', (username, password,))
+            mysql.connection.commit()
+            print("hi3")
+            msg = 'You have successfully registered!'
+    elif request.method == 'POST':
+        print("hi4")
+        # Form is empty... (no POST data)
+        msg = 'Please fill out the form!'
+    # Show registration form with message (if any)
+    return render_template('register.html', msg=msg)
 
 
 @app.route('/profile')
