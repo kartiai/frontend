@@ -87,7 +87,6 @@ for (let i = 0; i < products.length; i++) {
             <img class="card-img-top" src=${product.image} alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">${product.name}</h5>
-                <p class="card-text">${product.description}</p>
                 <a href="${product.link}" class="btn btn-primary">${product.price}</a>
                 <a href="#" class="btn btn-primary class-col-list-but-id"
                 id="compare_data-ida1321" data-bs-toggle="modal" data-name-product="
@@ -101,6 +100,17 @@ for (let i = 0; i < products.length; i++) {
 
             document.getElementById("product-list-tag-id").innerHTML +=cards_boots;
 }
+}
+
+function logoutFunction(){
+  fetch('/logout')
+    .then(response => response.json()) // Parse the response as JSON
+    .then(data => {
+    })
+    .catch(error => {
+      // Handle any errors
+      console.error(error);
+    });
 }
 
 document.getElementById("setButton").click();
