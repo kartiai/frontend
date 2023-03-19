@@ -186,6 +186,10 @@ def search():
                         res.append(p)
                 account = cursor.fetchone()
 
+
+
+                
+
             # Redirect to home page
             print("Ana are mere")
             return res
