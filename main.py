@@ -47,13 +47,14 @@ def login():
             session['username'] = account['email']
             # Redirect to home page
             print("Ana are mere")
-            return 'Logged in successfully!'
+            return render_template('profile.html', username=username)
         else:
             # Account doesnt exist or username/password incorrect
             print("Ana are mere2")
             msg = 'Incorrect username/password!'
 
     return render_template('login.html', msg=msg)
+
 
 # http://localhost:5000/logout - this will be the logout page
 @app.route('/logout')
@@ -203,6 +204,31 @@ def giveAllSites():
 
     return res
 
+
+@app.route('/addData', methods=['POST'])
+def addData():
+     # Output message if something goes wrong...
+    msg = ''
+    
+    args = request.args
+
+    
+    for site in args:
+        title = site.get("title")
+        price = site.get("price")
+        img = site.get("image")
+        link = site.get("link")
+
+        print(title, price, img, link, site)
+        
+        if request.method == 'POST':
+            print("hello2")
+            # Check if account exists using MySQL
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('INSERT INTO kartiai.products (`id_product`, `name`, `price`, `image`, `link`, `site`) VALUES (NULL, %s, %s, %s, %s, %s)', (title, price, img, link, site))
+            mysql.connection.commit()
+
+    return "Completed successfully"
 
 
 if __name__ == '__main__':
