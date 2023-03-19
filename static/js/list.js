@@ -1,12 +1,10 @@
 let products = [
 ];
 
-
 function getDataAll() {
   fetch('/profile/data?firma=all&username=luciangeorge06@yahoo.com')
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
-      products = [];
       products = data;
       generateList();
       // Do something with the data
@@ -22,7 +20,6 @@ function getDataEmag() {
 fetch('/profile/data?firma=emag&username=luciangeorge06@yahoo.com')
   .then(response => response.json()) // Parse the response as JSON
   .then(data => {
-    products = [];
     products = data;
     generateList();
     // Do something with the data
@@ -38,7 +35,6 @@ function getDataPCgarage() {
   fetch('/profile/data?firma=pcgarage&username=luciangeorge06@yahoo.com')
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
-      products = [];
       products = data;
       generateList();
       // Do something with the data
@@ -55,7 +51,7 @@ function generateList(){
 for (let i = 0; i < products.length; i++) {
     const product = products[i];
     let cards_boots=`
-    <div class=" col-md-4" style="margin-top: 50px;">
+    <div class=" col-md-4" style="margin-top: 25px;">
             <div class="card " >
             <img class="card-img-top" src=${product.image} alt="Card image cap">
             <div class="card-body">
