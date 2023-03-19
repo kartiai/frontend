@@ -72,6 +72,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/index2.html')
+def index2():
+    return render_template('index2.html')
+
+
 @app.route('/register.html', methods=['GET', 'POST'])
 def register():
     # Output message if something goes wrong...
@@ -111,6 +116,14 @@ def register():
 def profile():
     return render_template('profile.html')
 
+
+@app.route('/profilepage.html')
+def profilepage():
+    email=session['username']
+    nume=email.split('@')
+    nume = nume[0]
+    print(nume)
+    return render_template('profilepage.html', nume=nume,  email=email)
 
 # http://localhost:5000/pythonlogin/ - the following will be our login page, which will use both GET and POST requests
 @app.route('/profile/data/', methods=['GET'])
@@ -175,6 +188,7 @@ def search():
             msg = 'Incorrect username/password!'
 
     return render_template('login.html', msg=msg)
+
 
 
 @app.route('/allsites', methods=['GET'])
