@@ -73,11 +73,11 @@
           <div class="col-9">
             <div class = "row">
               <h5 class="card-title"> Select site: </h5>
-              <button type="button" onclick="getDataAll('{{ username }}')" class="btn btn-outline-primary"> All </button>
+              <button type="button" id="setButton" onclick="getDataAll('{{ username }}')" class="btn btn-outline-primary"> All </button>
               <button type="button" username= "ana" onclick="getDataEmag('{{ username }}')" class="btn btn-outline-primary">Emag </button>
               <button type="button" class="btn btn-outline-primary" onclick="getDataPCgarage('{{ username }}')">PC garage</button>
-              <button type="button" class="btn btn-outline-primary">Altex</button>
-              <button type="button" class="btn btn-outline-primary">Cel</button>
+              <button type="button" class="btn btn-outline-primary" onclick="getDataAlex('{{ username }}')">Altex</button>
+              <button type="button" class="btn btn-outline-primary" onclick="getDataCel('{{ username }}')">Cel</button>
            </div>
           </div>
           <div class="col-1"></div>
@@ -85,11 +85,11 @@
         <div class="col-10"   >
             <div class = "content">
                 <div class="row" id="product-list-tag-id">
-                  
+
 
                 </div>
             </div>
-          
+
         </div>
 
       </div>
@@ -109,7 +109,7 @@
         <div class = "content">
           <div class="row">
             <div class="col-sm-12">
-            
+
               <div class=" col-sm-3" >
                 <div class="card " >
                 <img class="card-img-top" src="https://s1.cel.ro/images/logo/cel.png" alt="Card image cap">
@@ -117,12 +117,12 @@
                     <h5 class="card-title">Cel.ro</h5>
                     <p class="card-text"></p>
                     <a href="/getpage?page=cel" class="btn btn-primary" >Visit prices</a>
-                    
+
                 </div>
                 </div>
                 </div>
 
-                
+
                 <div class=" col-sm-3" >
                   <div class="card " >
                   <img class="card-img-top" src="https://lcdn.altex.ro/render/_next/static/media/altex.c8989614.svg" alt="Card image cap">
@@ -130,7 +130,7 @@
                       <h5 class="card-title">Altex</h5>
                       <p class="card-text"></p>
                       <a href="/getpage?page=altex" class="btn btn-primary" >Visit prices</a>
-                      
+
                   </div>
                   </div>
                   </div>
@@ -142,7 +142,7 @@
                         <h5 class="card-title">Emag</h5>
                         <p class="card-text"></p>
                         <a href="/getpage?page=emag" class="btn btn-primary" >Visit prices</a>
-                        
+
                     </div>
                     </div>
                     </div>
@@ -155,7 +155,7 @@
                           <h5 class="card-title">PcGarage</h5>
                           <p class="card-text"></p>
                           <a href="/getpage?page=pcgarage" class="btn btn-primary" >Visit prices</a>
-                          
+
                       </div>
                       </div>
                       </div>
@@ -166,7 +166,7 @@
 
           </div>
       </div>
-     
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -175,7 +175,11 @@
     </div>
   </div>
 </div>
-
+<script>
+window.addEventListener("load", function() {
+  getDataAll(username);
+});
+</script>
 
   <div id="preloader"></div>
 
@@ -190,7 +194,6 @@
   <script src="../static/js/list.js"></script>
   <script src="../static/js/main.js"></script>
   <!-- Template Main JS File -->
-
 </body>
 
 </html>
