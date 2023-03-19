@@ -234,16 +234,22 @@ def giveAllSites():
 
         # Check if account exists using MySQL
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        str = 'SELECT link FROM kartiai.websites'
+        str = 'SELECT * FROM kartiai.websites'
         cursor.execute(str)
         account = cursor.fetchone()
         print(account)
 
         while account:
-            res.append(account['link'])
+            crt = []
+            crt.append(account['link'])
+            crt.append(account['name'])
+            crt.append(account['class_price'])
+            crt.append(account['class_image'])
+            res.append(crt)
             account = cursor.fetchone()
 
     return res
+
 
 
 if __name__ == '__main__':
