@@ -58,7 +58,7 @@ for (let i = 0; i < products.length; i++) {
                 <h5 class="card-title">${product.name}</h5>
                 <p class="card-text">${product.description}</p>
                 <a href="#" class="btn btn-primary">${product.price}</a>
-                <a href="#" class="btn btn-primary" id="compare_data-ida1321" data-bs-toggle="modal" data-bs-target="#exampleModal">Compare</a>
+                <a href="#" class="btn btn-primary" id="compare_data-ida1321" data-bs-toggle="modal" data-name-product="${product.name}" data-bs-target="#exampleModal">Compare</a>
             </div>
             </div>
             </div>
