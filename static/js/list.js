@@ -1,14 +1,15 @@
 let products = [
 ];
 
-function getDataAll() {
-  fetch('/profile/data?firma=all&username=luciangeorge06@yahoo.com')
+function getDataAll(a) {
+  fetch('/profile/data?firma=all&username=' + a)
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
       products = data;
       generateList();
       // Do something with the data
       console.log(data);
+      console.log(a)
     })
     .catch(error => {
       // Handle any errors
@@ -16,8 +17,8 @@ function getDataAll() {
     });
 }
 
-function getDataEmag() {
-fetch('/profile/data?firma=emag&username=luciangeorge06@yahoo.com')
+function getDataEmag(a) {
+fetch('/profile/data?firma=emag&username=' + a)
   .then(response => response.json()) // Parse the response as JSON
   .then(data => {
     products = data;
@@ -31,8 +32,8 @@ fetch('/profile/data?firma=emag&username=luciangeorge06@yahoo.com')
   });
 }
 
-function getDataPCgarage() {
-  fetch('/profile/data?firma=pcgarage&username=luciangeorge06@yahoo.com')
+function getDataPCgarage(a) {
+  fetch('/profile/data?firma=pcgarage&username=' + a)
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
       products = data;
