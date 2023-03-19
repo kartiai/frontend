@@ -32,6 +32,26 @@ fetch('/profile/data?firma=emag&username=' + a)
   });
 }
 
+function getInputValue(){
+    // Selecting the input element and get its value 
+    var inputVal = document.getElementById("exampleInputEmail1").value;
+    console.log(inputVal)
+    products[products.length] = 
+      {
+      id_product: 1000,
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/2048px-SNice.svg.png",
+      link:"http://localhost:5000/profile?",
+      name: inputVal,
+      price: "find_me",
+      site:"ce_site_smecher_am_aici"}
+    generateList()
+    console.log(products)
+    //products.append(inputVal)
+    // Displaying the value
+    //alert(inputVal);
+}
+
+
 function getDataPCgarage(a) {
   fetch('/profile/data?firma=pcgarage&username=' + a)
     .then(response => response.json()) // Parse the response as JSON
