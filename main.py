@@ -73,6 +73,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/index2.html')
+def index2():
+    return render_template('index2.html')
+
+
 @app.route('/register.html', methods=['GET', 'POST'])
 def register():
     # Output message if something goes wrong...
@@ -110,7 +115,17 @@ def register():
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    print(session['username'])
+    return render_template('profile.html', username=session['username'])
+
+
+@app.route('/profilepage.html')
+def profilepage():
+    email=session['username']
+    nume=email.split('@')
+    nume = nume[0]
+    print(nume)
+    return render_template('profilepage.html', nume=nume,  email=email)
 
 
 # http://localhost:5000/pythonlogin/ - the following will be our login page, which will use both GET and POST requests
@@ -123,7 +138,7 @@ def search():
 
     args = request.args
     firma = args.get("firma")
-    username = args.get("username")
+    username = session['username']
     print(firma)
     print(username)
 
@@ -161,10 +176,17 @@ def search():
                 #print(product)
                 if firma != 'all':
                     if account_firma == firma:
+                        p = {}
+                        p = product
+                        p['name'] = product['name'][:40]
                         print(product)
-                        res.append(product)
+                        res.append(p)
                 else:
-                    res.append(product)
+                        p = {}
+                        p = product
+                        p['name'] = product['name'][:40]
+                        print(product)
+                        res.append(p)
                 account = cursor.fetchone()
 
             # Redirect to home page
