@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
+import json
 
 app = Flask(__name__)
 
@@ -253,6 +254,35 @@ def addData():
 
     return "Completed successfully"
 
+@app.route("/add/product/dump",methods=["POST","GET"])
+def add_product_dump():
+    json_data = request.get_json()
+    print(json_data)
+    with open("static/json/data.json", "w") as f:
+        # Write dictionary as JSON to file
+        json.dump(json_data, f)
+    return "data"
+
+@app.route("/getpage",methods=["POST",'GET'])
+def get_page_produts():     
+    args = request.args.get("page")
+        # Open file for reading
+    with open("static/json/data.json", "r") as f:
+            # Load JSON data from file
+            my_dict = json.load(f)
+            lst=[]
+            for i in sorted(my_dict['products']):
+                lst.append([int(len(i)),i])
+            lst=sorted(lst, key=lambda x: x[0])
+            print(lst)
+            if args=="cel":
+                return lst[1][1]##[0][1]
+            if args=="pcgarage":
+                return lst[2][1]
+            if args=="altex":  
+                return lst[0][1]
+            if args=="emag":  
+                return lst[3][1]
 
 if __name__ == '__main__':
     app.run()

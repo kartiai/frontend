@@ -36,7 +36,16 @@ fetch('http://localhost:5000/allsites').then(r => r.text()).then(list_items_serv
                     
                             let all_items_list = all_items_content_page.querySelectorAll(list_items_server[link][2]);
                             console.log(all_items_list);
-                            entire_list.push(all_items_list);
+                            // Initialize string variable
+                            let htmlString = '';
+
+                            // Loop through NodeList and concatenate outerHTML to string
+                            all_items_list.forEach(element => {
+                                htmlString += element.outerHTML;
+                            });
+
+                           
+                            entire_list.push(htmlString);
                            /* let products = [];
                             for(let i = 0; i < all_items_list.length; i++){
                                 try {
@@ -49,7 +58,7 @@ fetch('http://localhost:5000/allsites').then(r => r.text()).then(list_items_serv
                                 }
                             }*/
                            // console.log(products);
-                            const url = 'http://localhost:5000/add/product';
+                            const url = 'http://localhost:5000/add/product/dump';
                             console.log(entire_list);
                             fetch(url, {
                             method: 'POST',
