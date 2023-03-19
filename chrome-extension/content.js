@@ -11,12 +11,19 @@ console.log("data");
 
 
 window.onload = function() {
-
-  const element = document.getElementById("compare_data-ida1321");  
-  element.addEventListener("click", function(event) {
+ 
+  document.addEventListener('click', event => {
+    // get the element that was clicked
     const clickedElement = event.target;
-    chrome.runtime.sendMessage({ "product-name":clickedElement.getAttribute("data-name-product") });
+  
+    // check if the element has the class name we're looking for
+    if (clickedElement.classList.contains('class-col-list-but-id')) {
+      // add your onclick event code here
+      console.log(clickedElement.getAttribute("data-name-product"));
+      chrome.runtime.sendMessage({ "product-name":clickedElement.getAttribute("data-name-product") });
+    }
   });
+
 };
 
 
