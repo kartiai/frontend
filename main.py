@@ -173,10 +173,17 @@ def search():
                 #print(product)
                 if firma != 'all':
                     if account_firma == firma:
+                        p = {}
+                        p = product
+                        p['name'] = product['name'][:40]
                         print(product)
-                        res.append(product)
+                        res.append(p)
                 else:
-                    res.append(product)
+                        p = {}
+                        p = product
+                        p['name'] = product['name'][:40]
+                        print(product)
+                        res.append(p)
                 account = cursor.fetchone()
 
             # Redirect to home page
