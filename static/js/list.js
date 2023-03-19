@@ -63,7 +63,7 @@ function getDataCel(a) {
 }
 
 function getDataAltex(a) {
-  fetch('/profile/data?firma=altex&username=' + a)
+  fetch('/profile/data?firma=amazon&username=' + a)
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
       products = data;
