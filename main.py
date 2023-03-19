@@ -45,8 +45,9 @@ def login():
             session['loggedin'] = True
             session['id'] = account['id_user']
             session['username'] = account['email']
+
             # Redirect to home page
-            print("Ana are mere")
+            print("AICIIIII" + username)
             return render_template('profile.html', username=username)
         else:
             # Account doesnt exist or username/password incorrect
@@ -141,7 +142,7 @@ def search():
 
         # Fetch one record and return result
         account = cursor.fetchone()
-        
+
         # If account exists in accounts table in out database
         if account:
             print("hi3")
@@ -182,7 +183,7 @@ def giveAllSites():
      # Output message if something goes wrong...
     msg = ''
     res = []
-    
+
     if request.method == 'GET':
         print("hello2")
 
@@ -209,10 +210,10 @@ def giveAllSites():
 def addData():
      # Output message if something goes wrong...
     msg = ''
-    
+
     args = request.args
 
-    
+
     for site in args:
         title = site.get("title")
         price = site.get("price")
@@ -220,7 +221,7 @@ def addData():
         link = site.get("link")
 
         print(title, price, img, link, site)
-        
+
         if request.method == 'POST':
             print("hello2")
             # Check if account exists using MySQL

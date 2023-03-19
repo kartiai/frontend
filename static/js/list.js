@@ -47,6 +47,36 @@ function getDataPCgarage(a) {
     });
 }
 
+function getDataCel(a) {
+  fetch('/profile/data?firma=cel&username=' + a)
+    .then(response => response.json()) // Parse the response as JSON
+    .then(data => {
+      products = data;
+      generateList();
+      // Do something with the data
+      console.log(data);
+    })
+    .catch(error => {
+      // Handle any errors
+      console.error(error);
+    });
+}
+
+function getDataAltex(a) {
+  fetch('/profile/data?firma=altex&username=' + a)
+    .then(response => response.json()) // Parse the response as JSON
+    .then(data => {
+      products = data;
+      generateList();
+      // Do something with the data
+      console.log(data);
+    })
+    .catch(error => {
+      // Handle any errors
+      console.error(error);
+    });
+}
+
 function generateList(){
   document.getElementById("product-list-tag-id").innerHTML = '';
 for (let i = 0; i < products.length; i++) {
@@ -57,9 +87,10 @@ for (let i = 0; i < products.length; i++) {
             <img class="card-img-top" src=${product.image} alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">${product.name}</h5>
-                <p class="card-text">${product.description}</p>
-                <a href="#" class="btn btn-primary">${product.price}</a>
-                <a href="#" class="btn btn-primary" id="compare_data-ida1321" data-bs-toggle="modal" data-name-product="${product.name}" data-bs-target="#exampleModal">Compare</a>
+                <a href="${product.link}" class="btn btn-primary">${product.price}</a>
+                <a href="#" class="btn btn-primary class-col-list-but-id"
+                id="compare_data-ida1321" data-bs-toggle="modal" data-name-product="
+                ${product.name}" data-bs-target="#exampleModal">Compare</a>
             </div>
             </div>
             </div>
@@ -71,4 +102,19 @@ for (let i = 0; i < products.length; i++) {
 }
 }
 
-getDataAll();
+function logoutFunction(){
+  fetch('/logout')
+    .then(response => response.json()) // Parse the response as JSON
+    .then(data => {
+    })
+    .catch(error => {
+      // Handle any errors
+      console.error(error);
+    });
+}
+
+document.getElementById("setButton").click();
+
+
+
+
